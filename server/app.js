@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 dotenv.config();
 
 const restaurantRoutes = require('./routes/restaurant.route');
@@ -9,6 +10,8 @@ const { PORT } = process.env;
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 const port = PORT || 3002;
 

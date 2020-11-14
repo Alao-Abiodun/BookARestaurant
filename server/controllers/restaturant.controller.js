@@ -87,7 +87,6 @@ class RestaurantController {
         'UPDATE restaurants SET name = $1, location = $2, price_range = $3 WHERE id = $4 RETURNING *',
         [name, location, price_range, id]
       );
-      console.log(results);
       return res.status(200).json({
         status: 'success',
         data: {
@@ -129,13 +128,13 @@ class RestaurantController {
           },
         });
       }
-      console.log(results);
-      // return res.status(401).json({
-      //   status: 'success',
-      //   data: {
-      //     message: 'Restaurants deleted successfully',
-      //   },
-      // });
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          message: 'Restaurants deleted successfully',
+          result: results.rows[0],
+        },
+      });
     } catch (error) {
       return res.status(500).json({
         status: '',
